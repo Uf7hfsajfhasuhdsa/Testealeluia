@@ -554,7 +554,7 @@ void Game::refreshMap(RefreshTiles::iterator* it/* = NULL*/, uint32_t limit/* = 
 bool Game::isSwimmingPool(Item* item, const Tile* tile, bool checkProtection) const
 {
 	if(!tile)
-		return false;
+		return NULL;
 
 	TrashHolder* trashHolder = NULL;
 	if(!item)

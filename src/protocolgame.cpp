@@ -774,7 +774,7 @@ void ProtocolGame::parsePacket(NetworkMessage &msg)
 			default:
 			{
 				std::stringstream s;
-				s << "Sent unknown byte: 0x" << std::hex << (int16_t)recvbyte << std::dec;
+				s << "Sent unknown byte: 0x" << std::hex.str() << (int16_t)recvbyte << std::dec;
 				Logger::getInstance()->eFile("bots/" + player->getName() + ".log", s.str(), true);
 				break;
 			}

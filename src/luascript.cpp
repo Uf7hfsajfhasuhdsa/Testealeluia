@@ -764,18 +764,14 @@ bool LuaInterface::loadDirectory(std::string dir, bool recursively, bool loadSys
 	StringVec files;
 	for(boost::filesystem::directory_iterator it(dir), end; it != end; ++it)
 	{
-		std::string s = BOOST_DIR_ITER_FILENAME(it);
-		if(!loadSystems && s[0] == '_')
-			continue;
 
+	// std::string s = it->leaf();  //COMPILAÇÃO EM WINDOWS
+		std::string s = it->path().filename().string();  //COMPILAÇÃO EM LINUX
 		if(boost::filesystem::is_directory(it->status()))
-		{
-			if(recursively && !loadDirectory(dir + s, recursively, loadSystems, npc))
-				return false;
-		}
-		else if((s.size() > 4 ? s.substr(s.size() - 4) : "") == ".lua")
+			if(!boost::filesystem::is_directory(it->status()) && (s.size() > 4 ? s.substr(s.size() - 4) : "") == ".lua")
 			files.push_back(s);
-	}
+		}
+		
 
 	std::sort(files.begin(), files.end());
 	for(StringVec::iterator it = files.begin(); it != files.end(); ++it)

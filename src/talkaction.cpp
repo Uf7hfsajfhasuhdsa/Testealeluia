@@ -133,7 +133,7 @@ bool TalkActions::registerEvent(Event* event, xmlNodePtr p, bool override)
 
 bool TalkActions::onPlayerSay(Creature* creature, uint16_t channelId, const std::string& words, bool ignoreAccess)
 {
-	std::string cmd[TALKFILTER_LAST], param[TALKFILTER_LAST];
+	std::string cmd[TALKFILTER_LAST] = {words, words, words}, param[TALKFILTER_LAST] = {"", "", ""};
 	for(int32_t i = 0; i < TALKFILTER_LAST; ++i)
 		cmd[i] = words;
 
